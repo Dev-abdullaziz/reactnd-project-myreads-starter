@@ -22,7 +22,7 @@ class BooksApp extends React.Component {
   }
 
   moveToShelf = (book,event) => {
-    BooksAPI.update(book,event.target.value).then(data => this.setState({ shelves: {...data} })) 
+    BooksAPI.update(book,event.target.value)
     if(this.state.books.filter(oneBook => oneBook.id === book.id).length>0){
       let newBooks = [...this.state.books]
       let index = newBooks.findIndex(oldbook => oldbook.id === book.id)
@@ -34,9 +34,12 @@ class BooksApp extends React.Component {
       let newBooks = [...this.state.searchResult]
       let index = newBooks.findIndex(oldbook => oldbook.id === book.id)
       newBooks[index].shelf = event.target.value
-      this.setState(() => ({
-        searchResult: [...newBooks]
-      }))
+      BooksAPI.getAll().then(data => {
+        this.setState({
+          books: [...data],
+          searchResult: [...newBooks]
+        })
+      });
     }
   }
 
