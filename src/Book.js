@@ -27,10 +27,6 @@ class Book extends Component{
                             <option key={shelf.value} value={shelf.value} selected>{shelf.text}</option> :
                             <option key={shelf.value} value={shelf.value}>{shelf.text}</option>)
                         )}
-                        {/* <option value="currentlyReading">Currently Reading</option>
-                        <option value="wantToRead">Want to Read</option>
-                        <option value="read">Read</option>
-                        <option value="none">None</option> */}
                     </select>
                 </div>
                 </div>
